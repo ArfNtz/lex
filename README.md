@@ -1,6 +1,6 @@
 # lex
 
-`lex` can identify langage elements in a text. First, you define langage elements using regular expressions, in a dictionary. Then, you call `lex` with that dictionary and a text. `lex` returns the list of elements matching the dictionary.
+`lex` can identify langage elements in a text. First, you define langage elements using regular expressions, in a dictionary. Then, you call `lex` with that dictionary, and a text. `lex` returns the list of elements matching the dictionary.
 
 Here is an example, for some markdown langage : 
 - Define the langage elements
