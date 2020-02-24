@@ -50,6 +50,6 @@ final class lexTests: XCTestCase {
 
     static var allTests = [
         ("lex", lex_t1),
-        ("markdown_t1",markdown_t1)
+        ("markdown_t1", markdown_t1),
     ]
 }
