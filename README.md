@@ -33,7 +33,7 @@ public let md_gens: [Gen<MdToken>] = [
 ]
 ```
 
-- Call lex on a text : 
+- Then call `lex` on a text : 
 ````swift
 
 let text = """
@@ -49,7 +49,7 @@ let tokens = lex(text, md_gens)
 print(tokens)
 ````
 
-- The result is : 
+- `lex' gives the elements : 
 ```text
 [lex.MdToken.Level1, lex.MdToken.Text("Title "), lex.MdToken.BracketOpen, lex.MdToken.Class("flyer"), lex.MdToken.BracketClose, lex.MdToken.Level2, lex.MdToken.Text("SubTitle"), lex.MdToken.Level3, lex.MdToken.Text("Paragraph title"), lex.MdToken.Level4, lex.MdToken.Text("Paragraph subTitle"), lex.MdToken.Text("notes")]
 ```
