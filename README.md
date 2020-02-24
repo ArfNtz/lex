@@ -6,10 +6,10 @@ First, langage elements are defined by regular expressions, in a dictionary.
 
 Then, `lex` is given the dictionary, a text, and returns a list of matching elements.
 
-Example : 
+Here is an example form some markdown text : 
 
 - Define the langage elements
-```
+```swift
 public enum MdToken {
     case Level1         // # level 1
     case Level2         // ##  level 2
@@ -24,7 +24,7 @@ public enum MdToken {
 ```
 
 - Write the definitions
-```
+```swift
 public let md_gens: [Gen<MdToken>] = [
     Gen<MdToken>(regex: "[\r\n]" , funct: { _ in nil } ),
     Gen<MdToken>(regex: "[ \ta-zA-Z0-9]+" , funct: { .Text($0) } ),
@@ -38,16 +38,19 @@ public let md_gens: [Gen<MdToken>] = [
 ]
 ```
 
-- Call lex : 
-````
-let source = """
+- Call lex on a text : 
+````swift
+
+let text = """
 # Title {.flyer}
 ## SubTitle
 ### Paragraph title
 #### Paragraph subTitle
 notes
 """
-let tokens = lex(source, md_gens)
+
+let tokens = lex(text, md_gens)
+
 print(tokens)
 ````
 
