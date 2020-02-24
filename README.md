@@ -2,7 +2,7 @@
 
 `lex` can identify langage elements in a text. First, langage elements are defined by regular expressions, in a dictionary. Then, `lex` is given the dictionary, a text, and returns a list of matching elements.
 
-Here is an example from some markdown langage : 
+Here is an example for some markdown langage : 
 - Define the langage elements
 ```swift
 public enum MdToken {
