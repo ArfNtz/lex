@@ -1,30 +1,28 @@
 import Foundation
 
-public struct Generator<T> {
+public struct Gen<T> {
     var regex: String
     var funct: (String) -> T?
 }
 
-public func lex<T>(_ input:String,_ generators:[Generator<T>]) -> [T] {
+public func lex<T>(_ someText:String,_ gens:[Gen<T>]) -> [T] {
     var tokens = [T]()
-    var content = input
-
+    var content = someText
     while (content.count > 0) {
-        var matched = false
-        
-        for g in generators {
-            if let m = content.match(regex: g.regex) {
+        var found = false
+        for g in gens {
+            if let r = content.range(of: "^"+g.regex, options: .regularExpression) {
+                let m = String(content[r])
                 if let t = g.funct(m) {
                     tokens.append(t)
                 }
                 let index = content.index(content.startIndex, offsetBy: m.count)
                 content = String(content[index...])
-                matched = true
+                found = true
                 break
             }
         }
-        
-        if !matched {
+        if !found {
             let index = content.index(content.startIndex, offsetBy: 1)
             content =  String(content[index...])
         }

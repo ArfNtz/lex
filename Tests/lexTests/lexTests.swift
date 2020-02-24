@@ -12,7 +12,7 @@ final class lexTests: XCTestCase {
         #### Paragraph subTitle
         notes
         """
-        let tokens = lex(source, md_generators)
+        let tokens = lex(source, md_gens)
         print(tokens)
 
         // what do we expect
@@ -32,7 +32,7 @@ final class lexTests: XCTestCase {
 
         foo(3, 4)
         """
-        let tokens = lex(source, math_generators)
+        let tokens = lex(source, math_gens)
         print(tokens)
 
         // what do we expect
