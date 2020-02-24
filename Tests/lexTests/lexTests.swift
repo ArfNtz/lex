@@ -15,6 +15,11 @@ final class lexTests: XCTestCase {
         print(tokens)
 
         // what do we expect
+        if case .Level1 = tokens[0] {
+            // Success
+        } else {
+            XCTFail("token 0 fail")
+        }
 
 
     }

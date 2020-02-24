@@ -1,25 +1,28 @@
 import Foundation
 
 public enum MdToken {
-    case Define
-    case Identifier(String)
-    case Number(Float)
-    case ParensOpen
-    case ParensClose
-    case Comma
-    case Other(String)
-    case BinaryOp(String)
+    case Level1         // # level 1
+    case Level2         // ##  level 2
+    case Level3         // ###  level 3
+    case Level4         // ####  level 4
+    case Text(String)   // some text
+    case BracketOpen    // {
+    case BracketClose   // }
+    case Class(String)  // .fooClass
+    case Other(String) // unknown
 }
 
 typealias MdTokenGenerator = (String) -> MdToken?
 let mdTokenList: [(String, MdTokenGenerator)] = [
-    ("[ \t\n]", { _ in nil }),
-    ("[a-zA-Z][a-zA-Z0-9]*", { $0 == "def" ? .Define : .Identifier($0) }),
-    ("[0-9.]+", { (r: String) in .Number((r as NSString).floatValue) }),
-    ("\\(", { _ in .ParensOpen }),
-    ("\\)", { _ in .ParensClose }),
-    (",", { _ in .Comma }),
-    ("[+\\-*/]", { .BinaryOp($0) })
+    ("[\r\n]", { _ in nil }),
+    ("[ \ta-zA-Z0-9]*", { .Text($0) }),
+    ("#", { _ in .Level1 }),
+    ("##", { _ in .Level2 }),
+    ("###", { _ in .Level3 }),
+    ("####", { _ in .Level4 }),
+    ("\\{", { _ in .BracketOpen }),
+    ("\\}", { _ in .BracketClose }),
+    ("\\.[a-zA-Z0-9]", { .Class(String($0.suffix(1))) }),
 ]
 
 public func lexMd(_ input:String) -> [MdToken] {

@@ -1,0 +1,14 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "lldb-mi",
+            "request": "launch",
+            "name": "lldb test",
+            "target": "${workspaceFolder}/.build/x86_64-unknown-linux/debug/lexPackageTests.xctest",
+            "arguments": "",
+            "preLaunchTask": "swift-build-tests",
+            "cwd": "${workspaceFolder}",
+        }   
+    ]
+}
