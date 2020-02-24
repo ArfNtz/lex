@@ -49,7 +49,7 @@ let tokens = lex(text, md_gens)
 print(tokens)
 ````
 
-- `lex' gives the elements : 
+- `lex' returns identified elements : 
 ```swift
 [
 lex.MdToken.Level1, lex.MdToken.Text("Title "), lex.MdToken.BracketOpen,
