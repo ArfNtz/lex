@@ -3,7 +3,7 @@ import XCTest
 
 final class lexTests: XCTestCase {
 
-    func lexMd() {
+    func lexMd_t1() {
         let source = """
         # Title {.flyer}
         ## SubTitle
@@ -11,7 +11,7 @@ final class lexTests: XCTestCase {
         #### Paragraph subTitle
         notes
         """
-        let tokens = lex(source)
+        let tokens = lexMd(source)
         print(tokens)
 
         // what do we expect
@@ -19,7 +19,7 @@ final class lexTests: XCTestCase {
 
     }
 
-    func lex() {
+    func lex_t1() {
         let source = """
         def foo(x, y)
         x + y * 2 + (4 + 5) / 3
@@ -43,6 +43,7 @@ final class lexTests: XCTestCase {
     }
 
     static var allTests = [
-        ("testExample", testExample),
+        ("lex", lex_t1),
+        ("lexMd", lexMd_t1)
     ]
 }

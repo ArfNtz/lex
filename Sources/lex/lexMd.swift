@@ -29,7 +29,7 @@ public func lexMd(_ input:String) -> [MdToken] {
     while (content.count > 0) {
         var matched = false
         
-        for (pattern, generator) in tokenList {
+        for (pattern, generator) in mdTokenList {
             if let m = content.match(regex: pattern) {
                 if let t = generator(m) {
                     tokens.append(t)
