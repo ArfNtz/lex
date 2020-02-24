@@ -3,7 +3,8 @@ import XCTest
 
 final class lexTests: XCTestCase {
 
-    func lexMd_t1() {
+    func markdown_t1() {
+
         let source = """
         # Title {.flyer}
         ## SubTitle
@@ -11,11 +12,11 @@ final class lexTests: XCTestCase {
         #### Paragraph subTitle
         notes
         """
-        let tokens = lexMd(source)
+        let tokens = lex(source, md_generators)
         print(tokens)
 
         // what do we expect
-        if case .Level1 = tokens[0] {
+        if case MdToken.Level1 = tokens[0] {
             // Success
         } else {
             XCTFail("token 0 fail")
@@ -31,7 +32,7 @@ final class lexTests: XCTestCase {
 
         foo(3, 4)
         """
-        let tokens = lex(source)
+        let tokens = lex(source, math_generators)
         print(tokens)
 
         // what do we expect
@@ -49,6 +50,6 @@ final class lexTests: XCTestCase {
 
     static var allTests = [
         ("lex", lex_t1),
-        ("lexMd", lexMd_t1)
+        ("markdown_t1",markdown_t1)
     ]
 }
