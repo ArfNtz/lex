@@ -1,6 +1,6 @@
 import Foundation
 
-public enum Token {
+public enum MdToken {
     case Define
     case Identifier(String)
     case Number(Float)
@@ -11,39 +11,19 @@ public enum Token {
     case BinaryOp(String)
 }
 
-var expressions = [String: NSRegularExpression]()
-public extension String {
-    func match(regex: String) -> String? {
-        let expression: NSRegularExpression
-        if let exists = expressions[regex] {
-            expression = exists
-        } else {
-            expression = try! NSRegularExpression(pattern: "^\(regex)", options: [])
-            expressions[regex] = expression
-        }
-        
-        let range = expression.rangeOfFirstMatch(in: self, options: [], range: NSMakeRange(0, self.count))
-        if range.location != NSNotFound {
-            return (self as NSString).substring(with: range)
-        }
-        return nil
-    }
-}
-
-typealias TokenGenerator = (String) -> Token?
-let tokenList: [(String, TokenGenerator)] = [
+typealias MdTokenGenerator = (String) -> MdToken?
+let mdTokenList: [(String, MdTokenGenerator)] = [
     ("[ \t\n]", { _ in nil }),
     ("[a-zA-Z][a-zA-Z0-9]*", { $0 == "def" ? .Define : .Identifier($0) }),
     ("[0-9.]+", { (r: String) in .Number((r as NSString).floatValue) }),
     ("\\(", { _ in .ParensOpen }),
     ("\\)", { _ in .ParensClose }),
     (",", { _ in .Comma }),
-    
     ("[+\\-*/]", { .BinaryOp($0) })
 ]
 
-public func lex(_ input:String) -> [Token] {
-    var tokens = [Token]()
+public func lexMd(_ input:String) -> [MdToken] {
+    var tokens = [MdToken]()
     var content = input
     
     while (content.count > 0) {
