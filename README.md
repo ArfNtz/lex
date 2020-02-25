@@ -1,6 +1,6 @@
 # lex
 
-The name `lex` is inspired from a tool that generates lexical analysers : https://en.wikipedia.org/wiki/Lex_(software)
+The name `lex` is inspired from a tool that generates lexical analyzers : https://en.wikipedia.org/wiki/Lex_(software)
 
 Here, `lex` is an aproximately 30 lines long program that identifies langage elements in a text.
 
