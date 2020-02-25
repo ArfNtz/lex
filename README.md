@@ -1,6 +1,6 @@
 # lex
 
-`lex` identifies langage elements in a text. First, you define langage elements using <a href="https://en.wikipedia.org/wiki/Regular_expression">regular expressions</a>, in a dictionary. Then, you call `lex` with that dictionary, and a text. `lex` returns the list of elements matching the dictionary. You can have a look at the example further down.
+`lex` identifies langage elements in a text. First, you define langage elements using <a href="https://en.wikipedia.org/wiki/Regular_expression">regular expressions</a>, in a dictionary. Then, you call `lex` with that dictionary, and a text. `lex` returns the list of elements matching the dictionary. There is an example further down.
 
 In other words, `lex` is a <a href="https://en.wikipedia.org/wiki/Lexical_analysis#Tokenization">'tokenizer'</a> that works with regular expressions. 'Tokenisation' is the first step for lexical analysis. It's only around 30 lines of code in swift. `lex` is a template code, that means it can take any dictionary you define, i.e. any langage you define.
     
