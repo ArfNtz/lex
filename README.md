@@ -86,7 +86,7 @@ lex.MdLexem.Level4, lex.MdLexem.Text("Paragraph subTitle"),lex.MdLexem.Text("not
 
 Here is an example, for some mathematical langage. We're trying to find the langage elements in this markdown text : 
 ```
-cos(x, y) key
+bar(x, y) key
 x + y * 8 + (4 - 1) / 7
 foo(8, 2)
 ```
@@ -95,7 +95,7 @@ foo(8, 2)
 ```swift
 // langage elements
 public enum MathLexem {
-    case Keyword
+    case Key
     case Identifier(String)
     case Number(Float)
     case ParensOpen
@@ -110,7 +110,7 @@ public enum MathLexem {
 // dictionary
 public let math_dict: [Def<MathLexem>] = [
     Def<MathLexem>(regex: "[ \t\n]" , funct: { _ in nil } ),
-    Def<MathLexem>(regex: "[a-zA-Z][a-zA-Z0-9]*" , funct: { $0 == "key" ? .Keyword : .Identifier($0) } ),
+    Def<MathLexem>(regex: "[a-zA-Z][a-zA-Z0-9]*" , funct: { $0 == "key" ? .Key : .Identifier($0) } ),
     Def<MathLexem>(regex: "#[0-9.]+" , funct: {(r: String) in .Number((r as NSString).floatValue) } ),
     Def<MathLexem>(regex: "\\(" , funct: { _ in .ParensOpen } ),
     Def<MathLexem>(regex: "\\)" , funct: { _ in .ParensClose } ),
@@ -123,7 +123,7 @@ public let math_dict: [Def<MathLexem>] = [
 ````swift
 let math_text =
 """
-  cos(x, y) key
+  bar(x, y) key
   x + y * 8 + (4 - 1) / 7
   foo(8, 2)
 """
@@ -136,9 +136,9 @@ print(math_elements)
 - `lex' returns identified elements : 
 ```swift
 [
-lex.MathLexem.Identifier("cos"), lex.MathLexem.ParensOpen, lex.MathLexem.Identifier("x"),
+lex.MathLexem.Identifier("bar"), lex.MathLexem.ParensOpen, lex.MathLexem.Identifier("x"),
 lex.MathLexem.Comma, lex.MathLexem.Identifier("y"), lex.MathLexem.ParensClose,
-lex.MathLexem.Keyword, lex.MathLexem.Identifier("x"), lex.MathLexem.BinaryOp("+"),
+lex.MathLexem.Key, lex.MathLexem.Identifier("x"), lex.MathLexem.BinaryOp("+"),
 lex.MathLexem.Identifier("y"), lex.MathLexem.BinaryOp("*"), lex.MathLexem.BinaryOp("+"),
 lex.MathLexem.ParensOpen, lex.MathLexem.BinaryOp("-"), lex.MathLexem.ParensClose,
 lex.MathLexem.BinaryOp("/"), lex.MathLexem.Identifier("foo"), lex.MathLexem.ParensOpen,
