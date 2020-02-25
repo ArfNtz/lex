@@ -8,7 +8,7 @@ First, you define the langage elements, the lexical, using <a href="https://en.w
 
 In other words, `lex` is a <a href="https://en.wikipedia.org/wiki/Lexical_analysis#Tokenization">'tokenizer'</a> that works with regular expressions. 'Tokenisation' is the first step for lexical analysis. `lex` is only around 30 lines of code, but it's a template code. That means it should be isolated for reuse because it works for any dictionary you define, i.e. any langage you define. Swift's syntax allows to do this in a simple and short way.
     
-After `lex`, a following step could apply an algebra to the identified langage elements. An algebra defines operators. Operators have a priority, a number of operands, and can be postfix/prefix/infix with its operands. We should identify operators within our langage elements, and reorder the elements according to the operators characteristics, in order to obtain a 'Reverse Polish Notation' : operands followed by operator ... . After 'RPN' transformation, our original text should be used as a program in a state machine ...
+After `lex`, a following step could apply an algebra to the identified langage elements. An algebra defines operators. Operators have a priority, a number of operands, and can be postfix/prefix/infix with its operands. We should identify operators within our langage elements, and reorder the elements according to the operators characteristics, in order to obtain a 'Reverse Polish Notation' : operands followed by operator ... . After this 'RPN' transformation, our original text could be used as a program in a state machine ...
 
 ___
 
