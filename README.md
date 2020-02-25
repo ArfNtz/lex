@@ -2,7 +2,7 @@
 
 The name `lex` is inspired from a tool that generates lexical analysers : https://en.wikipedia.org/wiki/Lex_(software)
 
-Here, `lex` is a small programm that identifies langage elements in a text.
+Here, `lex` is an aproximately 30 lines long program that identifies langage elements in a text.
 
 First, you define the langage elements (the **lexical**) using <a href="https://en.wikipedia.org/wiki/Regular_expression">regular expressions</a>, in a dictionary. Then, you call `lex` with that dictionary, and a text. `lex` returns the list of elements matching the dictionary. There are two examples further down, one for a mathematical langage, and one for a markdown langage.
 
