@@ -14,12 +14,12 @@ Then call `lex` with a text, and that dictionary.
 
 There are two examples further down, one for a mathematical langage, and one for a markdown langage.
 
-**features**
+**Features**
 
 - works for the dictionary you define, i.e. the langage you define.
 - Swift's syntax allows to do this in a simple and short way.
 
-**more description**
+**More description**
 
 In other words, `lex` is a <a href="https://en.wikipedia.org/wiki/Lexical_analysis#Tokenization">'tokenizer'</a> that works with regular expressions. 'Tokenisation' is the first step for lexical analysis. `lex` is only around 30 lines of code, but it's a template code. That means it should be isolated for reuse because 
     
