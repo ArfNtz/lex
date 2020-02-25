@@ -1,7 +1,7 @@
 import Foundation
 
 // langage elements
-public enum MdLexem {
+public enum MdLexem : Equatable {
     case Level1         // # level 1
     case Level2         // ##  level 2
     case Level3         // ###  level 3

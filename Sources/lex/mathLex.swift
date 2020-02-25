@@ -1,7 +1,7 @@
 import Foundation
 
 // langage elements
-public enum MathLexem {
+public enum MathLexem : Equatable {
     case Infinite
     case Identifier(String)
     case Number(Float)
