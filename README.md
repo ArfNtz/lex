@@ -137,7 +137,7 @@ lex.MathLexem.Comma, lex.MathLexem.Identifier("y"), lex.MathLexem.ParensClose,
 lex.MathLexem.Keyword, lex.MathLexem.Identifier("x"), lex.MathLexem.BinaryOp("+"),
 lex.MathLexem.Identifier("y"), lex.MathLexem.BinaryOp("*"), lex.MathLexem.BinaryOp("+"),
 lex.MathLexem.ParensOpen, lex.MathLexem.BinaryOp("-"), lex.MathLexem.ParensClose,
- lex.MathLexem.BinaryOp("/"), lex.MathLexem.Identifier("foo"), lex.MathLexem.ParensOpen,
- lex.MathLexem.Comma, lex.MathLexem.ParensClose
- ]
+lex.MathLexem.BinaryOp("/"), lex.MathLexem.Identifier("foo"), lex.MathLexem.ParensOpen,
+lex.MathLexem.Comma, lex.MathLexem.ParensClose
+]
 ```
