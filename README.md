@@ -1,14 +1,13 @@
 # lex
 
-The name `lex` is inspired from this <a href="https://en.wikipedia.org/wiki/Lex_(software)">tool</a> that generates lexical analyzers.
+The name is inspired from this <a href="https://en.wikipedia.org/wiki/Lex_(software)">lex tool</a> that generates lexical analyzers.
 
 Here, `lex` is a 30 lines program that identifies langage elements in a text.
 
 **Usage**
 
-First, define the <a href="https://en.wikipedia.org/wiki/Lexical">lexical</a> and the dictionary, using <a href="https://en.wikipedia.org/wiki/Regular_expression">regular expressions</a>, on the definition part. 
-
-Then call `lex` with a text, and that dictionary. 
+- First, define the <a href="https://en.wikipedia.org/wiki/Lexical">lexical</a> and the dictionary, using <a href="https://en.wikipedia.org/wiki/Regular_expression">regular expressions</a>, on the definition part. 
+- Then call `lex` with a text, and that dictionary. 
 
 `lex` returns the list of langage  elements matching the dictionary. 
 
