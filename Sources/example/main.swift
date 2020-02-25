@@ -1,10 +1,9 @@
 import lex
 
 let math_text = """
-def cos(x, y)
-x + y * 2 + (4 + 5) / 3
-
-bar(3, 4)
+  cos(x, y) key
+  x + y * 8 + (4 - 1) / 7
+  foo(8, 2)
 """
 let math_elements = lex(math_text, math_dict)
 print(math_elements)
