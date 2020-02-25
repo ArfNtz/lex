@@ -7,9 +7,7 @@ Here, `lex` is a 30 lines program that identifies langage elements in a text.
 **Usage**
 
 - First, define the <a href="https://en.wikipedia.org/wiki/Lexical">lexical</a> and the dictionary, using <a href="https://en.wikipedia.org/wiki/Regular_expression">regular expressions</a>, on the definition part. 
-- Then call `lex` with a text, and that dictionary. 
-
-`lex` returns the list of langage  elements matching the dictionary. 
+- Then call `lex` with a text, and that dictionary. `lex` returns the list of langage  elements matching the dictionary. 
 
 There are two examples further down, one for a mathematical langage, and one for a markdown langage.
 
