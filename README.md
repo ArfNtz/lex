@@ -1,6 +1,6 @@
 # lex
 
-`lex` identifies langage elements in a text. First, you define langage elements using <a href="https://en.wikipedia.org/wiki/Regular_expression">regular expressions</a>, in a dictionary. Then, you call `lex` with that dictionary, and a text. `lex` returns the list of elements matching the dictionary. There is an example further down.
+`lex` identifies langage elements in a text. First, you define langage elements using <a href="https://en.wikipedia.org/wiki/Regular_expression">regular expressions</a>, in a dictionary. Then, you call `lex` with that dictionary, and a text. `lex` returns the list of elements matching the dictionary. There are two examples further down, one for a mathematical langage, and one for a markdown langage.
 
 In other words, `lex` is a <a href="https://en.wikipedia.org/wiki/Lexical_analysis#Tokenization">'tokenizer'</a> that works with regular expressions. 'Tokenisation' is the first step for lexical analysis. `lex` is only around 30 lines of code, but it's a template code. That means it should be isolated for reuse because it works for any dictionary you define, i.e. any langage you define.
     
@@ -8,9 +8,12 @@ The following step after `lex` should apply an algebra to the identified langage
 
 ___
 
+# Examples
+
+## Some markdown langage
+
 Here is an example, for some <a href="https://fr.wikipedia.org/wiki/Markdown">markdown</a> langage. We're trying to find the langage elements in this markdown text : 
 ```
-let text = """
 # Title {.flyer}
 ## SubTitle
 ### Paragraph title
@@ -73,4 +76,68 @@ lex.MdLexem.Class("flyer"), lex.MdLexem.BracketClose, lex.MdLexem.Level2,
 lex.MdLexem.Text("SubTitle"), lex.MdLexem.Level3, lex.MdLexem.Text("Paragraph title"),
 lex.MdLexem.Level4, lex.MdLexem.Text("Paragraph subTitle"),lex.MdLexem.Text("notes")
 ]
+```
+
+## Some mathematical langage
+
+Here is an example, for some mathematical langage. We're trying to find the langage elements in this markdown text : 
+```
+cos(x, y) key
+x + y * 8 + (4 - 1) / 7
+foo(8, 2)
+```
+
+- Define the langage elements
+```swift
+// langage elements
+public enum MathLexem {
+    case Keyword
+    case Identifier(String)
+    case Number(Float)
+    case ParensOpen
+    case ParensClose
+    case Comma
+    case BinaryOp(String)
+}
+```
+
+- Write the definitions
+```swift
+// dictionary
+public let math_dict: [Def<MathLexem>] = [
+    Def<MathLexem>(regex: "[ \t\n]" , funct: { _ in nil } ),
+    Def<MathLexem>(regex: "[a-zA-Z][a-zA-Z0-9]*" , funct: { $0 == "key" ? .Keyword : .Identifier($0) } ),
+    Def<MathLexem>(regex: "#[0-9.]+" , funct: {(r: String) in .Number((r as NSString).floatValue) } ),
+    Def<MathLexem>(regex: "\\(" , funct: { _ in .ParensOpen } ),
+    Def<MathLexem>(regex: "\\)" , funct: { _ in .ParensClose } ),
+    Def<MathLexem>(regex: "," , funct: { _ in .Comma } ),
+    Def<MathLexem>(regex: "[+\\-*/]" , funct: { .BinaryOp($0) } )
+]
+```
+
+- Then call `lex` on a text : 
+````swift
+let math_text =
+"""
+  cos(x, y) key
+  x + y * 8 + (4 - 1) / 7
+  foo(8, 2)
+"""
+
+let math_elements = lex(math_text, math_dict)
+
+print(math_elements)
+````
+
+- `lex' returns identified elements : 
+```swift
+[
+lex.MathLexem.Identifier("cos"), lex.MathLexem.ParensOpen, lex.MathLexem.Identifier("x"),
+lex.MathLexem.Comma, lex.MathLexem.Identifier("y"), lex.MathLexem.ParensClose,
+lex.MathLexem.Keyword, lex.MathLexem.Identifier("x"), lex.MathLexem.BinaryOp("+"),
+lex.MathLexem.Identifier("y"), lex.MathLexem.BinaryOp("*"), lex.MathLexem.BinaryOp("+"),
+lex.MathLexem.ParensOpen, lex.MathLexem.BinaryOp("-"), lex.MathLexem.ParensClose,
+ lex.MathLexem.BinaryOp("/"), lex.MathLexem.Identifier("foo"), lex.MathLexem.ParensOpen,
+ lex.MathLexem.Comma, lex.MathLexem.ParensClose
+ ]
 ```
