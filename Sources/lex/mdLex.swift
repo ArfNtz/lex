@@ -7,9 +7,8 @@ public enum MdLexem : Equatable {
     case Level3         // ###  level 3
     case Level4         // ####  level 4
     case Text(String)   // some text
-    case BracketOpen    // {
+    case Class          // {.
     case BracketClose   // }
-    case Class(String)  // .fooClass
     case Other(String)  // unknown
 }
 
@@ -21,8 +20,7 @@ public let md_dict: [Def<MdLexem>] = [
     Def<MdLexem>(regex: "##[ \t]+" , funct: { _ in .Level2 } ),
     Def<MdLexem>(regex: "###[ \t]+" , funct: { _ in .Level3 } ),
     Def<MdLexem>(regex: "####[ \t]+" , funct: { _ in .Level4 } ),
-    Def<MdLexem>(regex: "\\{" , funct: { _ in .BracketOpen } ),
+    Def<MdLexem>(regex: "\\{." , funct: { _ in .Class } ),
     Def<MdLexem>(regex: "\\}" , funct: { _ in .BracketClose } ),
-    Def<MdLexem>(regex: "\\.[a-zA-Z0-9]+" , funct: { .Class(String($0.dropFirst())) } )
 ]
 
