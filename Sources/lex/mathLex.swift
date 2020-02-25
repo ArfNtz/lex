@@ -1,6 +1,7 @@
 import Foundation
 
-public enum MathToken {
+// langage elements
+public enum MathLexem {
     case Define
     case Identifier(String)
     case Number(Float)
@@ -11,13 +12,14 @@ public enum MathToken {
     case BinaryOp(String)
 }
 
-public let math_gens: [Gen<MathToken>] = [
-    Gen<MathToken>(regex: "[ \t\n]" , funct: { _ in nil } ),
-    Gen<MathToken>(regex: "[a-zA-Z][a-zA-Z0-9]*" , funct: { $0 == "def" ? .Define : .Identifier($0) } ),
-    Gen<MathToken>(regex: "#[0-9.]+" , funct: {(r: String) in .Number((r as NSString).floatValue) } ),
-    Gen<MathToken>(regex: "\\(" , funct: { _ in .ParensOpen } ),
-    Gen<MathToken>(regex: "\\)" , funct: { _ in .ParensClose } ),
-    Gen<MathToken>(regex: "," , funct: { _ in .Comma } ),
-    Gen<MathToken>(regex: "[+\\-*/]" , funct: { .BinaryOp($0) } )
+// dictionary
+public let math_dict: [Def<MathLexem>] = [
+    Def<MathLexem>(regex: "[ \t\n]" , funct: { _ in nil } ),
+    Def<MathLexem>(regex: "[a-zA-Z][a-zA-Z0-9]*" , funct: { $0 == "def" ? .Define : .Identifier($0) } ),
+    Def<MathLexem>(regex: "#[0-9.]+" , funct: {(r: String) in .Number((r as NSString).floatValue) } ),
+    Def<MathLexem>(regex: "\\(" , funct: { _ in .ParensOpen } ),
+    Def<MathLexem>(regex: "\\)" , funct: { _ in .ParensClose } ),
+    Def<MathLexem>(regex: "," , funct: { _ in .Comma } ),
+    Def<MathLexem>(regex: "[+\\-*/]" , funct: { .BinaryOp($0) } )
 ]
 

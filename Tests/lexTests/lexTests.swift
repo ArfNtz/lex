@@ -12,11 +12,11 @@ final class lexTests: XCTestCase {
         #### Paragraph subTitle
         notes
         """
-        let tokens = lex(source, md_gens)
+        let tokens = lex(source, md_dict)
         print(tokens)
 
         // what do we expect
-        if case MdToken.Level1 = tokens[0] {
+        if case MdLexem.Level1 = tokens[0] {
             // Success
         } else {
             XCTFail("token 0 fail")
@@ -32,11 +32,11 @@ final class lexTests: XCTestCase {
 
         foo(3, 4)
         """
-        let tokens = lex(source, math_gens)
+        let tokens = lex(source, math_dict)
         print(tokens)
 
         // what do we expect
-        if case .Define = tokens[0] {
+        if case MathLexem.Define = tokens[0] {
             // Success
         } else {
             XCTFail("token 0 fail")

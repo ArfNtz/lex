@@ -1,20 +1,22 @@
 import Foundation
 
-public struct Gen<T> {
+// A defition
+public struct Def<T> {
     var regex: String
     var funct: (String) -> T?
 }
 
-public func lex<T>(_ someText:String,_ gens:[Gen<T>]) -> [T] {
-    var tokens = [T]()
+// Take some text and return dictionary elements
+public func lex<T>(_ someText:String,_ dict:[Def<T>]) -> [T] {
+    var lexems = [T]()
     var content = someText
     while (content.count > 0) {
         var found = false
-        for g in gens {
-            if let r = content.range(of: "^"+g.regex, options: .regularExpression) {
+        for def in dict {
+            if let r = content.range(of: "^"+def.regex, options: .regularExpression) {
                 let m = String(content[r])
-                if let t = g.funct(m) {
-                    tokens.append(t)
+                if let t = def.funct(m) {
+                    lexems.append(t)
                 }
                 let index = content.index(content.startIndex, offsetBy: m.count)
                 content = String(content[index...])
@@ -27,5 +29,5 @@ public func lex<T>(_ someText:String,_ gens:[Gen<T>]) -> [T] {
             content =  String(content[index...])
         }
     }
-    return tokens
+    return lexems
 }

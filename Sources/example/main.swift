@@ -6,8 +6,8 @@ x + y * 2 + (4 + 5) / 3
 
 bar(3, 4)
 """
-let math_tokens = lex(math_text, math_gens)
-print(math_tokens)
+let math_elements = lex(math_text, math_dict)
+print(math_elements)
 
 let md_text = """
 # Title {.flyer}
@@ -16,6 +16,6 @@ let md_text = """
 #### Paragraph subTitle
 notes
 """
-let md_tokens = lex(md_text, md_gens)
-print(md_tokens)
+let md_elements = lex(md_text, md_dict)
+print(md_elements)
 
