@@ -4,7 +4,7 @@ The name `lex` is inspired from a tool that generates lexical analysers : https:
 
 Here, `lex` is an aproximately 30 lines long program that identifies langage elements in a text.
 
-First, you define the langage elements (the lexical) using <a href="https://en.wikipedia.org/wiki/Regular_expression">regular expressions</a>, in a dictionary. Then, you call `lex` with that dictionary, and a text. `lex` returns the list of elements matching the dictionary. There are two examples further down, one for a mathematical langage, and one for a markdown langage.
+First, you define the langage elements, the lexical, using <a href="https://en.wikipedia.org/wiki/Regular_expression">regular expressions</a>, in a dictionary. Then, you call `lex` with that dictionary, and a text. `lex` returns the list of elements matching the dictionary. There are two examples further down, one for a mathematical langage, and one for a markdown langage.
 
 In other words, `lex` is a <a href="https://en.wikipedia.org/wiki/Lexical_analysis#Tokenization">'tokenizer'</a> that works with regular expressions. 'Tokenisation' is the first step for lexical analysis. `lex` is only around 30 lines of code, but it's a template code. That means it should be isolated for reuse because it works for any dictionary you define, i.e. any langage you define. Swift's syntax allows to do this in a simple and short way.
     
