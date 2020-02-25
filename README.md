@@ -8,7 +8,16 @@ The following step after `lex` should apply an algebra to the identified langage
 
 ___
 
-Here is an example, for some markdown langage : 
+Here is an example, for some <a href="https://fr.wikipedia.org/wiki/Markdown">markdown</a> langage. We're trying to find the langage elements in this markdown text : 
+```
+let text = """
+# Title {.flyer}
+## SubTitle
+### Paragraph title
+#### Paragraph subTitle
+notes
+```
+
 - Define the langage elements
 ```swift
 // langage elements
