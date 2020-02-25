@@ -1,7 +1,7 @@
 import lex
 
 let math_text = """
-  cos(x, y) key
+  bar(x, y) inf
   x + y * 8 + (4 - 1) / 7
   foo(8, 2)
 """

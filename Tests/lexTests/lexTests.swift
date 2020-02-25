@@ -27,22 +27,21 @@ final class lexTests: XCTestCase {
 
     func lex_t1() {
         let source = """
-        def foo(x, y)
-        x + y * 2 + (4 + 5) / 3
-
-        foo(3, 4)
+        bar(x, y) inf
+        x + y * 8 + (4 - 1) / 7
+        foo(8, 2)
         """
         let tokens = lex(source, math_dict)
         print(tokens)
 
         // what do we expect
-        if case MathLexem.Define = tokens[0] {
+        if case MathLexem.Infinite = tokens[6] {
             // Success
         } else {
             XCTFail("token 0 fail")
         }
-        if case .Identifier(let id) = tokens[1] {
-            XCTAssertEqual(id, "foo")
+        if case .Identifier(let id) = tokens[0] {
+            XCTAssertEqual(id, "bar")
         } else {
             XCTFail("token 1 fail")
         }
